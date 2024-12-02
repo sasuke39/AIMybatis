@@ -1,0 +1,7 @@
+transformers>=4.30.0
+peft>=0.4.0
+datasets>=2.12.0
+torch>=2.0.0
+javalang    # 用于解析Java代码
+lxml        # XML处理
+trl         # 用于训练

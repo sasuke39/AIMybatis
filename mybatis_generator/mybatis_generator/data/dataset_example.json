@@ -1,0 +1,5 @@
+{
+    "instruction": "根据以下Java类生成对应的Mybatis Mapper XML",
+    "input": "public class User { private Long id; private String name; }",
+    "output": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<mapper namespace=\"com.example.UserMapper\">...</mapper>"
+} 

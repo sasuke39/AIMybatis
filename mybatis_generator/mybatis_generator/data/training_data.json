@@ -1,0 +1,81 @@
+[
+    {
+        "instruction": "根据以下Java类生成对应的Mybatis Mapper XML",
+        "input": """
+            public class User {
+                private Long id;
+                private String username;
+                private String email;
+                private Date createTime;
+            }
+        """,
+        "output": """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+            <mapper namespace="com.example.mapper.UserMapper">
+                <resultMap id="BaseResultMap" type="com.example.entity.User">
+                    <id column="id" property="id" jdbcType="BIGINT"/>
+                    <result column="username" property="username" jdbcType="VARCHAR"/>
+                    <result column="email" property="email" jdbcType="VARCHAR"/>
+                    <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+                </resultMap>
+                
+                <sql id="Base_Column_List">
+                    id, username, email, create_time
+                </sql>
+                
+                <select id="selectById" parameterType="java.lang.Long" resultMap="BaseResultMap">
+                    SELECT <include refid="Base_Column_List"/> 
+                    FROM user 
+                    WHERE id = #{id}
+                </select>
+                
+                <insert id="insert" parameterType="com.example.entity.User">
+                    INSERT INTO user (username, email, create_time)
+                    VALUES (#{username}, #{email}, #{createTime})
+                </insert>
+            </mapper>
+        """
+    },
+    {
+        "instruction": "根据以下Java类生成对应的Mybatis Mapper XML",
+        "input": """
+            public class Order {
+                private Long orderId;
+                private Long userId;
+                private BigDecimal totalAmount;
+                private String status;
+                private Date orderTime;
+            }
+        """,
+        "output": """
+            <?xml version="1.0" encoding="UTF-8"?>
+            <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+            <mapper namespace="com.example.mapper.OrderMapper">
+                <resultMap id="BaseResultMap" type="com.example.entity.Order">
+                    <id column="order_id" property="orderId" jdbcType="BIGINT"/>
+                    <result column="user_id" property="userId" jdbcType="BIGINT"/>
+                    <result column="total_amount" property="totalAmount" jdbcType="DECIMAL"/>
+                    <result column="status" property="status" jdbcType="VARCHAR"/>
+                    <result column="order_time" property="orderTime" jdbcType="TIMESTAMP"/>
+                </resultMap>
+                
+                <sql id="Base_Column_List">
+                    order_id, user_id, total_amount, status, order_time
+                </sql>
+                
+                <select id="selectByOrderId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+                    SELECT <include refid="Base_Column_List"/>
+                    FROM orders
+                    WHERE order_id = #{orderId}
+                </select>
+                
+                <select id="selectByUserId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+                    SELECT <include refid="Base_Column_List"/>
+                    FROM orders
+                    WHERE user_id = #{userId}
+                </select>
+            </mapper>
+        """
+    }
+] 
