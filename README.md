@@ -175,7 +175,7 @@ python -m mybatis_generator.train
 ## 📧 联系方式
 
 - 项目维护者: [xian hong]
-- Email: [1255606156@example.com]
+- Email: [1255606156@qq.com]
 ```
 
 
